@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}CART{% endblock title %}
+{% block main-content %}
+
+ <!-- Cart view section -->
+ <section id="cart-view">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <div class="cart-view-area">
+           <div class="cart-view-table aa-wishlist-table">
+             <form action="">
+               <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Product View</th>
+                      
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for a in wishlist %}
+                      <tr class="wish{{a.id}}">
+                        <td><a class="remove" href="javascript:void(0)" onclick="remove_wishlist({{a.id}})"><fa class="fa fa-close"></fa></a></td>
+                        <td><a href="#"><img src="/media/{{a.pid.products_Image}}" alt="img"></a></td>
+                        <td><a class="aa-cart-title" href="#">{{a.pid.products_name}}</a></td>
+                        <td>&#8377;{{a.pid.products_price}}</td>
+                        <td><a href="{% url 'product-details' a.pid.id %}" class="aa-add-to-cart-btn">Product View</a></td>
+                      </tr>
+                      {% endfor %}          
+                      </tbody>
+                  </table>
+                </div>
+             </form>             
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+ <!-- / Cart view section -->
+ {% endblock main-content %}

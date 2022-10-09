@@ -1,0 +1,57 @@
+{% extends 'app/base.html' %}
+  {% load static %}
+  {% block title %}ACCOUNT{% endblock title %}
+  {% block main-content %}
+  
+  <!-- catg header banner section -->
+  <section id="aa-catg-head-banner">
+    
+    <div class="aa-catg-head-banner-area">
+     <div class="container">
+      <div class="aa-catg-head-banner-content">
+        <h2>Account Page</h2>
+        <ol class="breadcrumb">
+          <li><a href="index.html">Home</a></li>                   
+          
+        </ol>
+      </div>
+     </div>
+   </div>
+  </section>
+  <!-- / catg header banner section -->
+
+ <!-- Cart view section -->
+ <section id="aa-myaccount">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+        <div class="aa-myaccount-area">         
+            <div class="row">
+            
+              <div class="col-md-12">
+                {% if msg %}
+                  {{msg}}
+                {% endif %}
+                <div class="aa-myaccount-register">                 
+                 <h4>Register</h4>
+                 <form action="{% url 'account' %}" method="post" class="aa-login-form">
+                  {% csrf_token %}
+                    <label for="">Name<span>*</span></label>
+                    <input type="text" placeholder="Name" name="name">
+                    <label for="">Password<span>*</span></label>
+                    <input type="password" placeholder="Password" name="password">
+                    <label for="">Email<span>*</span></label>
+                    <input type="text" placeholder="Email" name="email">
+                    <button type="submit" class="aa-browse-btn">Register</button>                    
+                  </form>
+                </div>
+              </div>
+            </div>          
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+ <!-- / Cart view section -->
+ {% endblock main-content %}
+ 

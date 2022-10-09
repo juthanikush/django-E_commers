@@ -1,0 +1,82 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}{{product.products_name}}{% endblock title %}
+{% block main-content %}
+  <!-- catg header banner section -->
+  <section id="aa-catg-head-banner">
+  
+   
+  </section>
+  <!-- / catg header banner section -->
+
+  <!-- product category -->
+  <section id="aa-product-details">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="aa-product-details-area">
+            <div class="aa-product-details-content">
+              <div class="row">
+                <!-- Modal view slider -->
+                <div class="col-md-5 col-sm-5 col-xs-12">                              
+                  <div class="aa-product-view-slider">                                
+                    <div id="demo-1" class="simpleLens-gallery-container">
+                      <div class="simpleLens-container">
+                        <div class="simpleLens-big-image-container"><a data-lens-image="/media/{{product.products_Image}}" class="simpleLens-lens-image"><img src="/media/{{product.products_Image}}" height="300px" widget="300px" class="{{product.products_name}}"></a></div>
+                      </div>
+                   
+                    </div>
+                  </div>
+                </div>
+                <!-- Modal view content -->
+                <div class="col-md-7 col-sm-7 col-xs-12">
+                  <div class="aa-product-view-content">
+                    <h3>{{product.products_name}}</h3>
+                    <div class="aa-price-block">
+                      <span class="aa-product-view-price">&#8377;{{product.products_price}}</span>
+                      
+                    </div>
+                    <p>{{product.products_desc}}</p>
+                   
+                    <div class="aa-prod-quantity">
+                      <form action="{% url 'addtocart' %}" method="post">
+                        {% csrf_token %}
+                        <select id="qty" name="qty">
+                          <option selected="1" value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                        </select>
+                      
+                     
+                    </div>
+                    <div class="aa-prod-view-bottom">
+                      <input type="hidden" name="pro_id" value="{{product.id}}">
+                      {% if request.session.name %}
+                        <button class="aa-add-to-cart-btn" href="#">Add To Cart</button>
+                      {% else %}
+                        <a href="" data-toggle="modal" class="aa-add-to-cart-btn" data-target="#login-modal">Add To Cart</a>
+                      {% endif %}
+                     
+                     
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+           
+            <!-- Related product -->
+             
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- / product category -->
+
+  
+
+{% endblock main-content %}

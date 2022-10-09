@@ -1,0 +1,84 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}CART{% endblock title %}
+{% block main-content %}
+
+  <!-- / catg header banner section -->
+
+ <!-- Cart view section -->
+ <section id="cart-view">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <div class="cart-view-area">
+           <div class="cart-view-table">
+             <form action="">
+               <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th></th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for a in addtocart %}
+                      <tr class="addtocart{{a.id}} ">
+                        <td><a class="remove" href="javascript:void(0)" onclick="remove_addtocart({{a.id}})"><fa class="fa fa-close"></fa></a></td>
+                        <td><img src="/media/{{a.pid.products_Image}}" alt="img"></td>
+                        <td><a class="aa-cart-title" href="#">{{a.pid.products_name}}</a></td>
+                        <td>&#8377;{{a.pid.products_price}}</td>
+                        <td>
+                          <a class="btn btn-danger" href="javascript:void(0)" onclick="decrement({{a.id}})">-</a>
+                          <input class="aa-cart-quantity" id="qty{{a.id}}" type="number" value="{{a.qty}}">
+                          <a class="btn btn-success" href="javascript:void(0)" onclick="increment({{a.id}})">+</a>
+                        </td>
+                        <td class="pro_total{{a.id}}">&#8377;{% widthratio a.pid.products_price 1 a.qty %} </td>
+                      </tr>
+                      {% endfor %}
+                      
+                      <tr>
+                        <td colspan="6" class="aa-cart-view-bottom">
+                          <div class="aa-cart-coupon">
+                            
+                              <p id="msg" class="text-danger"></p>
+                            <input class="aa-coupon-code" id="coupon_code" type="text" placeholder="Coupon">
+                            <a class="aa-cart-view-btn" onclick="coupon_code()" type="submit" value="Apply Coupon">Apply Coupon</a>
+                          </div>
+                         
+                        </td>
+                      </tr>
+                      </tbody>
+                  </table>
+                </div>
+             </form>
+             <!-- Cart Total view -->
+             <div class="cart-view-total">
+               <h4>Cart Totals</h4>
+               <table class="aa-totals-table total">
+                 <tbody>
+                   <tr>
+                     <th>Subtotal</th>
+                     <td class="total1">&#8377;{{total}}</td>
+                   </tr>
+                   <tr>
+                     <th>Total</th>
+                     <td class="total2">&#8377;{{total}}</td>
+                   </tr>
+                 </tbody>
+               </table>
+               <a href="{% url 'check_out' %}" class="aa-cart-view-btn">Proced to Checkout</a>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+ <!-- / Cart view section -->
+
+ {% endblock main-content %}

@@ -1,0 +1,182 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block main-content %}
+
+<section id="aa-product">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="aa-product-area">
+              <div class="aa-product-inner">
+                <!-- start prduct navigation -->
+                 <ul class="nav nav-tabs aa-products-tab">
+                    
+                  </ul>
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                    <!-- Start men product category -->
+                    <div class="tab-pane fade in active" id="men">
+                      <ul class="aa-product-catg">
+                        
+                        <!-- start single product item -->
+                        {% for m in products_m %}
+                        <li>
+                          <figure>
+                            <a class="aa-product-img" href="{% url 'product-details' m.id %}">
+                                <img src="/media/{{m.products_Image}}" alt="" height="300px" widget="500px">
+                            </a>
+                            {% if request.session.name %}
+                              <a class="aa-add-card-btn add_to_cart{{m.id}}" onclick="add_to_cart({{m.id}},1)"  href="javascript:void(0)"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            
+                            {% else %}
+                                
+                                <a class="aa-add-card-btn" data-toggle="modal" data-target="#login-modal" href=""><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            {% endif %}
+                            
+                              <figcaption>
+                              <h4 class="aa-product-title"><a href="#">{{ m.products_name}}</a></h4>
+                              <span class="aa-product-price">&#8377;{{ m.products_price}}</span>
+                            </figcaption>
+                          </figure>                        
+                          <div class="aa-product-hvr-content">
+                            {% if request.session.name %}
+                              <a href="javascript:void(0)" class="wishlist{{m.id}}"  onclick="wishlist({{m.id}})" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                            {% else %}
+                            
+                              <a href="" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Add to Wishlist" class="aa-cartbox-checkout aa-primary-btn" data-target="#login-modal"><span class="fa fa-heart-o"></span></a>
+                            {% endif %}
+                          
+                                                
+                          </div>
+                          <!-- product badge -->
+                         
+                        </li>
+                        {% endfor %}
+                        <!-- start single product item -->
+                                             
+                      </ul>
+                      
+                    </div>
+                    <!-- / men product category -->
+                    <!-- start women product category -->
+                    <div class="tab-pane fade" id="women">
+                      <ul class="aa-product-catg">
+                        <!-- start single product item -->
+                        {% for m in products_w %}
+                        <li>
+                          <figure>
+                            <a class="aa-product-img" href="{% url 'product-details' m.id %}">
+                                <img src="/media/{{m.products_Image}}" alt="" height="300px" widget="500px">
+                            </a>
+                            
+                            {% if request.session.name %}
+                              <a class="aa-add-card-btn add_to_cart{{m.id}}" onclick="add_to_cart({{m.id}},1)"  href="javascript:void(0)"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            
+                            {% else %}
+                                
+                                <a class="aa-add-card-btn" data-toggle="modal" data-target="#login-modal" href=""><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            {% endif %}
+                              <figcaption>
+                              <h4 class="aa-product-title"><a href="javascript:void(0)">{{ m.products_name}}</a></h4>
+                              <span class="aa-product-price">&#8377;{{ m.products_price}}</span>
+                            </figcaption>
+                          </figure>                        
+                          <div class="aa-product-hvr-content">
+                            {% if request.session.name %}
+                              <a href="javascript:void(0)" class="wishlist{{m.id}}"  onclick="wishlist({{m.id}})" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                            {% else %}
+                            
+                              <a href="" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Add to Wishlist" class="aa-cartbox-checkout aa-primary-btn" data-target="#login-modal"><span class="fa fa-heart-o"></span></a>
+                            {% endif %}
+                          
+                                                 
+                          </div>
+                          <!-- product badge -->
+                          
+                        </li>
+                        {% endfor %}                      
+                      </ul>
+                     
+                    </div>
+                    <!-- / women product category -->
+                   
+                    <!-- start electronic product category -->
+                    <div class="tab-pane fade" id="electronics">
+                       <ul class="aa-product-catg">
+                        <!-- start single product item -->
+                        {% for m in products_e %}
+                        <li>
+                          <figure>
+                            <a class="aa-product-img" href="{% url 'product-details' m.id %}">
+                                <img src="/media/{{m.products_Image}}" alt="" height="300px" widget="500px">
+                            </a>
+                            
+                            {% if request.session.name %}
+                              <a class="aa-add-card-btn add_to_cart{{m.id}}" onclick="add_to_cart({{m.id}},1)"  href="javascript:void(0)"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            
+                            {% else %}
+                                
+                                <a class="aa-add-card-btn" data-toggle="modal" data-target="#login-modal" href=""><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                            {% endif %}
+                              <figcaption>
+                              <h4 class="aa-product-title"><a href="javascript:void(0)">{{ m.products_name}}</a></h4>
+                              <span class="aa-product-price">&#8377;{{ m.products_price}}</span>
+                            </figcaption>
+                          </figure>                        
+                          <div class="aa-product-hvr-content">
+                            {% if request.session.name %}
+                              <a href="javascript:void(0)" class="wishlist{{m.id}}" onclick="wishlist({{m.id}})" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
+                            {% else %}
+                              
+                              <a href="" data-toggle="modal" data-toggle="tooltip" data-placement="top" title="Add to Wishlist" class="aa-cartbox-checkout aa-primary-btn" data-target="#login-modal"><span class="fa fa-heart-o"></span></a>
+                            {% endif %}
+                            
+                                                    
+                          </div>
+                          <!-- product badge -->
+                        
+                        </li>
+                        {% endfor %}                 
+                      </ul>
+                     
+                    </div>
+                    <!-- / electronic product category -->
+                  </div>
+                           
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- / Products section -->
+ 
+ 
+  <!-- Client Brand -->
+  <section id="aa-client-brand">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="aa-client-brand-area">
+            <ul class="aa-client-brand-slider">
+              <li><a href="#"><img src="{% static 'app/img/client-brand-java.png'%}" alt="java img"></a></li>
+              <li><a href="#"><img src="{% static 'app/img/client-brand-jquery.png'%}" alt="jquery img"></a></li>
+              <li><a href="#"><img src="{% static 'app/img/client-brand-html5.png'%}" alt="html5 img"></a></li>
+              <li><a href="#"><img src="{% static 'app/img/client-brand-css3.png'%}" alt="css3 img"></a></li>
+              <li><a href="#"><img src="{% static 'app/img/client-brand-wordpress.png'%}" alt="wordPress img"></a></li>
+              <li><a href="#"><img src="{% static 'app/img/client-brand-joomla.png'%}" alt="joomla img"></a></li>
+              <li><a href="#"><img src="{% static 'app/img/client-brand-java.png'%}" alt="java img"></a></li>
+              <li><a href="#"><img src="{% static 'app/img/client-brand-jquery.png'%}" alt="jquery img"></a></li>
+              <li><a href="#"><img src="{% static 'app/img/client-brand-html5.png'%}" alt="html5 img"></a></li>
+              <li><a href="#"><img src="{% static 'app/img/client-brand-css3.png'%}" alt="css3 img"></a></li>
+              <li><a href="#"><img src="{% static 'app/img/client-brand-wordpress.png'%}" alt="wordPress img"></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock main-content %}

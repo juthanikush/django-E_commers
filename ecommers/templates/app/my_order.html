@@ -1,0 +1,40 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}CART{% endblock title %}
+{% block main-content %}
+
+ <!-- Cart view section -->
+ <section id="cart-view">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+         <div class="cart-view-area">
+           <div class="cart-view-table aa-wishlist-table">
+             <form action="">
+               <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Product</th>
+                        <th>total_amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in place_order %}
+                      <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{i.uid}}</td>
+                      </tr>  
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+             </form>             
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+ <!-- / Cart view section -->
+ {% endblock main-content %}

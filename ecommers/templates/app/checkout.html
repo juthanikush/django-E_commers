@@ -1,0 +1,135 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}CART{% endblock title %}
+{% block main-content %}
+  
+
+ <!-- Cart view section -->
+ <section id="checkout">
+   <div class="container">
+     <div class="row">
+       <div class="col-md-12">
+        <div class="checkout-area">
+          <form action="{% url 'purchace' %}" method="post">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="checkout-left">
+                  <div class="panel-group" id="accordion">
+                    <!-- Coupon section -->
+                    <div class="panel panel-default aa-checkout-coupon">
+                      <div class="panel-heading">
+                        
+                      </div>
+                      <div id="collapseOne" class="panel-collapse collapse in">
+                        
+                      </div>
+                    </div>
+                  
+                 
+                    <!-- Shipping Address -->
+                    <div class="panel panel-default aa-checkout-billaddress">
+                      <div class="panel-heading">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="">
+                            Shippping Address
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="collapseFour" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                         <div class="row">
+                            <div class="col-md-6">
+                              <div class="aa-checkout-single-bill">
+                                <input type="text" name="fn" placeholder="First Name*">
+                              </div>                             
+                            </div>
+                            <div class="col-md-6">
+                              <div class="aa-checkout-single-bill">
+                                <input type="text" name="ln" placeholder="Last Name*">
+                              </div>
+                            </div>
+                          </div> 
+                         
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="aa-checkout-single-bill">
+                                <input type="email" name="email" placeholder="Email Address*">
+                              </div>                             
+                            </div>
+                            <div class="col-md-6">
+                              <div class="aa-checkout-single-bill">
+                                <input type="number" name="phone" placeholder="Phone*">
+                              </div>
+                            </div>
+                          </div> 
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="aa-checkout-single-bill">
+                                <textarea cols="8" name="address" rows="3" placeholder="Address"></textarea>
+                              </div>                             
+                            </div>                            
+                          </div>   
+                                   
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="checkout-right">
+                  <h4>Order Summary</h4>
+                  <div class="aa-order-summary-area">
+                    <table class="table table-responsive">
+                      <thead>
+                        <tr>
+                          <th>Product</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for a in addtocart %}
+                        <tr>
+                          <td>{{a.pid.products_name}} <strong> x  {{a.qty}}</strong></td>
+                          <td>&#8377;{% widthratio a.pid.products_price 1 a.qty %}</td>
+                        </tr>
+                        {% endfor %}
+                      
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <th>Subtotal</th>
+                          <td>&#8377;{{sub_total}}</td>
+                        </tr>
+                        {% if request.session.coupon_code_amount %}
+                         <tr>
+                          <th>COUPON CODE</th>
+                          <td>&#8377;{{request.session.coupon_code_amount}}</td>
+                        </tr>
+                        {% endif %}
+                         <tr>
+                          <th>Total</th>
+                          <td>&#8377;{{final_total}}</td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                  <h4>Payment Method</h4>
+                  <div class="aa-payment-method">                    
+                    <label for="paypal"><input type="radio" id="paypal" name="optionsRadios" value="1"> Instamojo Payment  </label>
+                    
+                    <input type="submit" value="Place Order" class="aa-browse-btn">                
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% csrf_token %}
+          </form>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+ <!-- / Cart view section -->
+ {% endblock main-content %}
+ 
