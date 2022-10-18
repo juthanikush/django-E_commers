@@ -10,6 +10,7 @@ urlpatterns=[
     path('verifi',views.verifi.as_view(),name='verifi'),
     path('logout/',views.logout,name='logout'),
     path('thank_you/',views.thank_you,name='thank_you'),
+    path('place_oredr_details/<slug:id>',views.place_oredr_details,name='place_oredr_details'),
     path('wishlist/',views.wishlist,name='wishlist'),
     path('wish_remove/',views.wish_remove,name='wish_remove'),
     path('my_order/',views.my_order,name='my_order'),

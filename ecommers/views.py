@@ -345,4 +345,23 @@ def my_order(request):
         total=0
         count=0
     
-    return render(request,'app/my_order.html',{'place_order':po,'value':1,'wishlist':wishlist,'total':total,'count':count})
+    return render(request,'app/my_order.html',{'place_order':po,'wishlist':wishlist,'addtocart':addtocart,'total':total,'count':count})
+
+def place_oredr_details(request,id):
+    uid=request.session['id']
+    po=placed_order.objects.filter(uid=uid).filter(payment_request_id=id)
+    total_amount=0
+    for a in po:
+        total_amount+=a.qty*a.pid.products_price
+
+    if request.session.get('id',None):
+        id=request.session['id']
+        addtocart=Add_to_cart.objects.filter(uid=id).all()
+        count=Add_to_cart.objects.filter(uid=id).count()
+        total=0
+        for a in addtocart:
+            total+=a.qty*a.pid.products_price
+    else:
+        total=0
+        count=0
+    return render(request,'app/my_order_details.html',{'place_order':po,'wishlist':wishlist,'addtocart':addtocart,'total_amount':total_amount,'total':total,'count':count})

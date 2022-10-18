@@ -15,18 +15,26 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th>Bill</th>
-                        
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Qty</th>
+                        <th>Image</th>
                       </tr>
                     </thead>
                     <tbody>
                       {% for i in place_order %}
                       <tr>
-                        <td><a href={% url 'place_oredr_details' i.payment_request_id%}>{{forloop.counter}}</a></td>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{i.pid.products_name}}</td>
+                        <td>{{i.pid.products_price}}</td>
+                        <td>{{i.qty}}</td>
+                        <td><img src="/media/{{i.pid.products_Image}}" alt="" height="300px" widget="500px"></td>
                       </tr>  
                       {% endfor %}
                     </tbody>
                   </table>
+                  Total Amount :- {{total_amount}}
                 </div>
              </form>             
            </div>
